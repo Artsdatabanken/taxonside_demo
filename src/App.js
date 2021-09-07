@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Autocomplete from "./components/Autocomplete";
+import Taxon from "./components/Taxon";
+import React, { useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [taxon, setTaxon] = useState(false);
+  const [taxonData, setTaxonData] = useState(false);
+
+  if (
+    taxon &&
+    (!taxonData || taxonData.scientificNameID !== taxon.ScientificNameId)
+  ) {
+    axios
+      .get(
+        "https://artsdatabanken.no/api/Taxon/ScientificName/" +
+          taxon.ScientificNameId
+      )
+      .then((res) => {
+        res.data.vernacularName = taxon.PopularName;
+        axios
+          .get(
+            "https://artsdatabanken.no/api/Resource/Taxon/" + res.data.taxonID
+          )
+          .then((resource_res) => {
+            res.data.resource = resource_res.data;
+
+            axios
+            .get(
+              "https://artsdatabanken.no/api/Images/species/" + res.data.scientificNameID
+            )
+            .then((img_res) => {
+              res.data.images = img_res.data.data.images;
+              setTaxonData(res.data);
+            })
+
+
+          });
+      });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Autocomplete chooseTaxon={setTaxon} />
+
+      {taxonData && <Taxon taxonData={taxonData} />}
     </div>
   );
 }
