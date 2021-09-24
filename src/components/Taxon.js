@@ -83,10 +83,12 @@ function Taxon({ taxonData }) {
         {coverPicture}
 
         <div className="sidebox">
-          <h2>Status</h2>
-          <RedlistStatus status={taxonData.resource.Kategori} />
+          <div className="section">
+            <h2>Status</h2>
+            <RedlistStatus status={taxonData.resource.Kategori} />
+          </div>
 
-          <div className="map">
+          <div className="map section">
             <h2>Observasjoner av {vernacularName}</h2>
             <img
               alt={`Kart over ${vernacularName}`}
