@@ -1,6 +1,176 @@
-.App {
-  text-align: center;
+html,
+body {
+  background-color: #f9f3eb;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
 }
+
+.App {
+  margin: 2em 2em 2em 2em;
+}
+
+
+.header {
+  background-color: #c5c9bc;
+  box-sizing: border-box;
+  border-radius: 15px;
+  margin-bottom: -3em;
+  margin-top: 2em;
+  padding: 1em 1em 3em 1em;
+
+}
+
+.title {
+  font-size: 2.5rem;
+}
+
+.vernacular {
+}
+
+.scientific.title {
+  opacity: .5;
+}
+
+.scientific.title::before {
+  content: " - ";
+}
+
+.scientific {
+  font-style: italic;
+}
+
+.header .author {
+  display: block;
+  padding: .25rem;
+  opacity: .5;
+
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  border-radius: 15px;
+  width: 100%;
+  padding: .5rem;
+
+}
+
+.content > * {
+  margin: .5rem;
+
+}
+.sidebox {
+  width: 300px;
+  flex-grow: 1;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+.content img {
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 1rem;
+  width: 60%;
+  flex-grow: 1;
+}
+
+.taxonCoverMissing {
+  height: 200px;
+}
+
+.ancestry {
+  font-size: .8rem;
+  padding-bottom: .6rem;
+}
+
+a {
+  color: #3a85ad;
+}
+
+.taxonDescriptionPreview {
+  box-sizing: border-box;
+  width: 60%
+}
+
+.taxonDescriptionPreview h2 {
+  font-size: 1.2rem;
+}
+
+
+.redlist {
+  border: 1px solid black;
+  padding: .2em;
+  margin: .1em;
+  width: 1.3em;
+  display: inline-block;
+  text-align: center;
+  opacity: .3;
+}
+
+.redlist.selected {
+  font-size: 1.75em;
+  opacity: 1;
+
+}
+
+.redlistLabel {
+  padding-top: 1em;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.redlist.RE {
+  background-color: #5a5b5d;
+  color: #fff;
+}
+
+.redlist.CR {
+  background-color: #99191a;
+  color: #fff;
+}
+
+.redlist.EN {
+  background-color: #d80f27;
+  color: #fff;
+}
+
+.redlist.VU {
+  background-color: #e94f33;
+  color: #fff;
+}
+
+.redlist.NT {
+  background-color: #ed6c26;
+  color: #fff;
+}
+
+.redlist.DD {
+  background-color: #f7a520;
+  color: #fff;
+}
+
+.redlist.LC {
+  background-color: #60beb2;
+  color: #fff;
+}
+
+.redlist.NA {
+  background-color: #939598;
+  color: #fff;
+}
+
+.redlist.NE {
+  background-color: #d1d3d4;
+  color: #6b6c6c;
+}
+
 
 .autocomplete {
   width: 300px;
@@ -24,17 +194,9 @@
   font-weight: bold;
 }
 
-h3 {
-  color: green;
-}
-
 .fatBox {
   border: 3px solid gray;
   display: flex;
-}
-
-.taxonCoverThumb {
-  width: 120px;
 }
 
 .taxonDescriptionPreview {

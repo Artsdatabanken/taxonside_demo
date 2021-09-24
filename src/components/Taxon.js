@@ -1,5 +1,6 @@
 import React from "react";
 import parse from "html-react-parser";
+import RedlistStatus from "./RedlistStatus";
 
 import "../App.css";
 
@@ -19,7 +20,8 @@ function Taxon({ taxonData }) {
   const getDescription = () => {
     if (
       taxonData.resource.Description &&
-      taxonData.resource.Description.length
+      taxonData.resource.Description.length &&
+      typeof taxonData.resource.Description[0].Intro == "string"
     ) {
       return parse(taxonData.resource.Description[0].Intro);
     } else {
@@ -41,35 +43,58 @@ function Taxon({ taxonData }) {
     }
   };
 
-  const getCoverPicture = () => {
-    console.log(taxonData.images);
+  let coverPicture;
 
-    if (taxonData.images.length) {
-      return taxonData.images[0].url;
-    } else {
-      return "";
-    }
-  };
+  if (taxonData.images.length) {
+    coverPicture = (
+      <img
+        src={taxonData.images[0].url}
+        alt="First"
+      />
+    );
+  }
+  else {
+    coverPicture = (
+      <img
+        src="./undraw_photos_1nui.svg"
+        alt="Ingen bilde"
+        className="taxonCoverMissing"
+      />
+    );
+  }
 
+  const ancestry = [];
+  for (const [index, value] of taxonData.higherClassification.entries()) {
+    ancestry.push(
+      <a href="#" key={index}>
+        {value.scientificName}
+      </a>
+    );
+    ancestry.push(" / ");
+  }
+  ancestry.pop();
   console.log(taxonData);
 
   return (
     <div>
-      <h1>{getVernacularName()}</h1>
-      <h2>
-        <i>{taxonData.scientificName}</i>
-      </h2>
-      <h3>{taxonData.scientificNameAuthorship}</h3>
+      <div className="header">
+        <div className="ancestry">{ancestry}</div>
 
-      <div className="fatBox">
-        <img src={getCoverPicture()} alt="First" className="taxonCoverThumb" />
+        <span className="vernacular title">{getVernacularName()}</span>
+        <span className="scientific title">{taxonData.scientificName}</span>
+        <span className="author">{taxonData.scientificNameAuthorship}</span>
+      </div>
+
+      <div className="content">
+        {coverPicture}
+
+        <div className="sidebox">
+          <RedlistStatus status={taxonData.resource.Kategori} />
+        </div>
         <div className="taxonDescriptionPreview">
-
-
+          <h2>Beskrivelse</h2>
           {getDescription()}
-          <a href={getDescriptionLink()}>
-              Les mer
-            </a>
+          <a href={getDescriptionLink()}>Les mer</a>
         </div>
       </div>
     </div>
