@@ -21,7 +21,7 @@ function RedlistStatus({ status }) {
     statuses.push(
       <span
         key={index}
-        className={`redlist ${value} ${value == status ? "selected" : ""}`}
+        className={`redlist ${value} ${value === status ? "selected" : ""}`}
       >
         {value}
       </span>

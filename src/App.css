@@ -71,12 +71,13 @@ body {
   padding: 1rem;
 }
 
-.content img {
+.content > img {
   background-color: #fff;
   box-sizing: border-box;
   border-radius: 15px;
   padding: 1rem;
   width: 60%;
+  object-fit: cover;
   flex-grow: 1;
 }
 
@@ -102,6 +103,15 @@ a {
   font-size: 1.2rem;
 }
 
+.map {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid gray;
+}
+.map img {
+  width: 100%;
+  max-width: 500px;
+}
 
 .redlist {
   border: 1px solid black;
@@ -111,6 +121,7 @@ a {
   display: inline-block;
   text-align: center;
   opacity: .3;
+  font-size: 1rem;
 }
 
 .redlist.selected {
