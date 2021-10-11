@@ -1,10 +1,14 @@
 import React from "react";
 import parse from "html-react-parser";
 import RedlistStatus from "./RedlistStatus";
+import ImageGrid from "./ImageGrid";
 
 import "../App.css";
 
-function Taxon({ taxonData }) {
+function Taxon({ taxonData, images }) {
+console.log(images);
+
+
   const capitalize = (word) => {
     return word[0].toUpperCase() + word.slice(1);
   };
@@ -97,11 +101,17 @@ function Taxon({ taxonData }) {
             />
           </div>
         </div>
+
+
         <div className="taxonDescriptionPreview">
           <h2>Beskrivelse</h2>
           {getDescription()}
           <a href={getDescriptionLink()}>Les mer</a>
         </div>
+
+        <ImageGrid images={images} />
+
+
       </div>
     </div>
   );

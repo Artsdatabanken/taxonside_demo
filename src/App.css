@@ -81,6 +81,19 @@ body {
   object-fit: none !important;
 }
 
+.imageGrid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imageGrid img {
+  display: flex;
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  margin: .5em;
+}
+
 .ancestry {
   font-size: 0.8rem;
   padding-bottom: 0.6rem;
